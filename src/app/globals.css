@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Dark mode palette */
+  --color-dark-bg: #0f0f1a;
+  --color-dark-card: #1a1a2e;
+  --color-dark-border: rgba(196, 168, 122, 0.2);
+
+  /* Light mode palette */
+  --color-light-bg: #faf8f5;
+  --color-light-card: #ffffff;
+  --color-light-border: #d4c5a9;
+
+  /* Accent colors */
+  --color-gold: #c4a87a;
+  --color-gold-muted: #8b6914;
+  --color-cream: #e8d5b7;
+  --color-brown-deep: #2c1810;
+
+  /* Status colors */
+  --color-status-new: #1f6feb;
+  --color-status-in-progress: #d29922;
+  --color-status-proof-sent: #8957e5;
+  --color-status-approved: #2ea043;
+  --color-status-paid: #238636;
+  --color-status-shipped: #d29922;
+  --color-status-delivered: #238636;
+  --color-status-cancelled: #da3633;
+
+  /* Typography */
+  --font-heading: Georgia, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-light-bg text-[#555555] antialiased;
+    font-family: var(--font-body);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .dark body,
+  .dark {
+    @apply bg-dark-bg text-[#b0b0b0];
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply text-brown-deep;
+  }
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-cream;
+  }
 }
