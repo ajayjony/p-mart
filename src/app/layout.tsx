@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import WhatsAppCTA from "@/components/layout/WhatsAppCTA";
 
 export const metadata: Metadata = {
   title: {
@@ -45,7 +48,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-light-bg dark:bg-dark-bg text-[#555555] dark:text-[#b0b0b0] antialiased transition-colors">
-        {children}
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <WhatsAppCTA />
       </body>
     </html>
   );
