@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { Order, OrderStatus } from "@/types";
-import { VALID_TRANSITIONS, STATUS_CONFIG } from "@/lib/constants";
+import { STATUS_CONFIG } from "@/lib/constants";
 import { supabase } from "@/lib/supabase-client";
-import StatusBadge from "./StatusBadge";
 
 interface Props {
   order: Order;
@@ -18,7 +17,7 @@ export default function OrderDetail({ order, onUpdate }: Props) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
-  const allowedNext = VALID_TRANSITIONS[order.status];
+  const allStatuses = Object.keys(STATUS_CONFIG) as OrderStatus[];
 
   async function save() {
     setSaving(true);
@@ -62,8 +61,11 @@ export default function OrderDetail({ order, onUpdate }: Props) {
           <label className="block text-xs font-semibold mb-1">Status</label>
           <select value={status} onChange={(e) => setStatus(e.target.value as OrderStatus)}
             className="px-3 py-2 rounded-lg border border-light-border dark:border-dark-border bg-light-card dark:bg-dark-card text-sm">
-            <option value={order.status}>{STATUS_CONFIG[order.status].label} (current)</option>
-            {allowedNext.map((s) => (<option key={s} value={s}>{STATUS_CONFIG[s].label}</option>))}
+            {allStatuses.map((s) => (
+              <option key={s} value={s}>
+                {STATUS_CONFIG[s].label}{s === order.status ? " (current)" : ""}
+              </option>
+            ))}
           </select>
         </div>
         <div>
