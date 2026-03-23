@@ -24,12 +24,13 @@ type FormData = {
 export default function OrderForm() {
   const searchParams = useSearchParams();
   const preselectedType = searchParams.get("type") || "";
+  const preselectedCategory = searchParams.get("category") || "polymer";
 
   const [formData, setFormData] = useState<FormData>({
     customer_name: "",
     customer_phone: "",
     customer_email: "",
-    stamp_category: "polymer",
+    stamp_category: (["polymer", "pre_ink", "self_ink"].includes(preselectedCategory) ? preselectedCategory : "polymer") as FormData["stamp_category"],
     stamp_type: STAMP_TYPES.find((s) => s.id === preselectedType)?.name || "",
     stamp_text: "",
     quantity: 1,
