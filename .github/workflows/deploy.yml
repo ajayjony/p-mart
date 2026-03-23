@@ -33,8 +33,8 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: https://frbzltalwboijspcbcxf.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZyYnpsdGFsd2JvaWpzcGNiY3hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Mjc1NDMsImV4cCI6MjA4OTUwMzU0M30.D9ZG14QfTOzsaEP45BQKiM24PDO74bmmFaTnf-PGsOQ
           NEXT_PUBLIC_SITE_URL: https://ajayjony.github.io/p-mart
 
       - name: Upload artifact
