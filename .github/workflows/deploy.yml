@@ -17,7 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,6 +29,22 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Debug secrets
+        run: |
+          if [ -z "$NEXT_PUBLIC_SUPABASE_URL" ]; then
+            echo "WARNING: NEXT_PUBLIC_SUPABASE_URL is empty!"
+          else
+            echo "NEXT_PUBLIC_SUPABASE_URL is set (length: ${#NEXT_PUBLIC_SUPABASE_URL})"
+          fi
+          if [ -z "$NEXT_PUBLIC_SUPABASE_ANON_KEY" ]; then
+            echo "WARNING: NEXT_PUBLIC_SUPABASE_ANON_KEY is empty!"
+          else
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY is set (length: ${#NEXT_PUBLIC_SUPABASE_ANON_KEY})"
+          fi
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
       - name: Build
         run: npm run build
