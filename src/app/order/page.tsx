@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import OrderForm from "@/components/order/OrderForm";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Place Order",
   description: "Order your custom rubber stamp online. Fill in your details and we'll design a proof for your approval.",
